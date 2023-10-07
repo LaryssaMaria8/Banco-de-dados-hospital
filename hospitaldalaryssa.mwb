@@ -1,0 +1,124 @@
+create database HOSPITAL2;
+use hospital2;
+show databases;
+
+
+create table médicos(
+	COD_ATENDIMENTO integer not null auto_increment,
+    nome varchar(255),
+    especialidade varchar(255),
+    endereço varchar(255),
+    licença varchar(255),
+    documento varchar (255),
+   
+    primary key(COD_ATENDIMENTO)
+);
+
+create table pacientes(
+	COD_ATENDIMENTO integer not null auto_increment,
+    nome varchar(255),
+    endereço varchar(255),
+    documento varchar (255),
+    data_entrada  date,
+	hora_entrada time, 
+    convênio varchar(255),
+    tipo_de_convênio varchar (255),
+primary key(COD_ATENDIMENTO),
+foreign key (COD_ATENDIMENTO) references 
+médicos(COD_ATENDIMENTO)
+);
+
+create table Enfermeiros(
+	COD_ATENDIMENTO integer not null auto_increment,
+    nome varchar(255),
+    nível varchar(255),
+    documento varchar (255),
+   
+primary key(COD_ATENDIMENTO),
+foreign key (COD_ATENDIMENTO) 
+references pacientes(COD_ATENDIMENTO)
+);
+
+
+
+insert into médicos (COD_ATENDIMENTO, nome, 
+especialidade, endereço, licença, documento)
+values
+(null, 'Ana Julia Menezes',
+'Obstreta',
+'Rua josé Nova Lima 145, Belo Horizonte, MG',
+'1241541156','MG16255499608'),
+
+(null,'Carlos Henrique da Silva', 'cardiologista',
+'Avenida ataide souza 94, Bairro leticia, MG', 
+'4545521045', 'MG1558866908'),
+
+(null, 'Lisa Marie Vezspermann','Neurologista',
+'Rua santa amélia 558, Belo Horizonte, MG', 
+'2849834892', 'RS83366184525'),
+
+(null, 'Andre Lucas da Sousa Carvalho','Geral',
+'Rua G 172, Venda Nova, MG','723483028',
+'MG55536020008'),
+
+(null, 'Fernando Augusto Collen','pediatra',
+'Rua geraldo de assis 99, contagem, mg',
+'1685544521', 'MG954552152308'),
+
+(null, 'Clara Maria da Silva Lima','Ginecologista', 
+'Avenida senhor do bomfim 885, Nova lima, MG',
+'767574564698','MG55966302508'),
+
+(null, 'Geraldo Almeida Costa Sena', 'Ortopedista',
+'Rua Nova york 37, Betim, MG', '47324738', 'MG9555877630');
+
+SELECT * FROM médicos;
+
+
+insert into pacientes (COD_ATENDIMENTO, nome, endereço,
+documento, data_entrada,  hora_entrada, 
+convênio, tipo_de_convênio)
+values
+
+(null, 'Juliana Lima', 'Rua souza maria 35, Santa Luzia', 
+'MG38483048', '2023-02-12', '12:59:46',
+'unimed', 'coletivo'),
+
+(null,'Lilian Beltrão','Rua para de Minas 7778, Santa Luzia',
+'MG9034858', '2023-02-10', '21:43:12',
+'antendmed', 'empresarial'),
+
+(null,'Taylor Sabrina Alves',
+'Rua cicero assis 996, Belo horizonte', 
+'MG84805803', '2023-02-13', '07:02:10',
+'unimed', 'empresarial'),
+
+(null,'Julio Cesar Almeida Carvalho',
+'Avenida Senhor do Bomfim,52,Belo Horizonte',
+'SP23336223', '2023-02-09', '03:55:04',
+'atendmed', 'coletivo'),
+
+(null,'Carlos Alberto Silvera',
+'Rua 37, n5345, Carlos Prates, MG', 
+'MG8478350', '2023-02-10', '18:36:51', 
+'unimed', 'familiar');
+
+select * from pacientes;
+
+insert into Enfermeiros(COD_ATENDIMENTO, nome, 
+nível,documento)
+values
+
+(null, 'Joana paula de Jesus', 'Enfermeira Chefe',
+'MG884558669'),
+
+(null, 'Wallace Moreira Cruz', 'técnico', 
+'MG788974'),
+
+(null, 'Andrea Moreira Oliveira', 'técnico',
+'MG394290'),
+
+(null, 'Raissa Neves Fernandes', 'técnico', 
+'MG499008');
+
+select * from enfermeiros
